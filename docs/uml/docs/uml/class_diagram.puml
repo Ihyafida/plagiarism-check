@@ -1,0 +1,32 @@
+@startuml
+skinparam style strictuml
+
+package "Plagiarism Checker" {
+
+  class App {
+    +upload_file()
+    +check_plagiarism()
+    +run()
+  }
+
+  class FileHandler {
+    +save_uploaded_file()
+    +load_reference_file()
+  }
+
+  class PlagiarismChecker {
+    -reference_text: string
+    +compare(text): float
+  }
+
+  class ResultFormatter {
+    +generate_result_html()
+  }
+
+  App --> FileHandler : uses
+  App --> PlagiarismChecker : uses
+  App --> ResultFormatter : uses
+  FileHandler --> uploads : saves files
+}
+
+@enduml
